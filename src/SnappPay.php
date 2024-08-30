@@ -106,8 +106,7 @@ class SnappPay extends AbstractsSnappPay
             'amount' => $amount,
             'paymentMethodTypeDto' => 'INSTALLMENT',
             'returnURL' => $callBackUrl,
-            'transactionId' => "$transactionId",
-            'externalSourceAmount' => 0,
+            'transactionId' => "$transactionId"
         ];
 
         $mobile = $this->snappPayMobile($order->getUserMobile());
@@ -120,6 +119,13 @@ class SnappPay extends AbstractsSnappPay
         $discountAmount = $order->getTotalPrice() - $order->getPrice();
         $data['discountAmount'] = $discountAmount > 0 ? $this->convertPrice(
             $discountAmount,
+            $order->getOrderCurrency(),
+            Currency::RIAL
+        ) : 0;
+
+        $externalSourceAmount = $order->getExternalSourceAmount();
+        $data['externalSourceAmount'] = $externalSourceAmount > 0 ? $this->convertPrice(
+            $externalSourceAmount,
             $order->getOrderCurrency(),
             Currency::RIAL
         ) : 0;
@@ -241,6 +247,13 @@ class SnappPay extends AbstractsSnappPay
         $discountAmount = $order->getTotalPrice() - $order->getPrice();
         $data['discountAmount'] = $discountAmount > 0 ? $this->convertPrice(
             $discountAmount,
+            $order->getOrderCurrency(),
+            Currency::RIAL
+        ) : 0;
+
+        $externalSourceAmount = $order->getExternalSourceAmount();
+        $data['externalSourceAmount'] = $externalSourceAmount > 0 ? $this->convertPrice(
+            $externalSourceAmount,
             $order->getOrderCurrency(),
             Currency::RIAL
         ) : 0;
