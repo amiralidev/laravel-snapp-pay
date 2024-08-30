@@ -104,7 +104,7 @@ return [
 $snappPay = new SnappPay();
 
 
-$order = new Order(123, 153000, 170000, 10000, 0, Currency::TOMAN, '09121231111');
+$order = new Order(123, 153000, 170000, 10000, 0, 0, Currency::TOMAN, '09121231111');
 $category = new ProductCategory('Electronics', 2);
 $orderProduct1 = new OrderProduct(1, 'Product 1', 10000, 9000, 2, $category);
 $orderProduct2 = new OrderProduct(2, 'Product 2', 50000, 45000, 3, $category);
