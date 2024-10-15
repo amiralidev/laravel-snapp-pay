@@ -107,6 +107,7 @@ class SnappPay extends AbstractsSnappPay
             'paymentMethodTypeDto' => 'INSTALLMENT',
             'returnURL' => $callBackUrl,
             'transactionId' => "$transactionId",
+            'isShipmentIncluded' => true,
             'externalSourceAmount' => 0,
         ];
 
@@ -234,6 +235,7 @@ class SnappPay extends AbstractsSnappPay
         $data = [
             'amount' => $amount,
             'paymentMethodTypeDto' => 'INSTALLMENT',
+            'isShipmentIncluded' => true,
             'paymentToken' => $order->getPaymentToken(),
         ];
 
