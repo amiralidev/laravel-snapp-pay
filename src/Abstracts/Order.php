@@ -50,6 +50,13 @@ abstract class Order implements OrderInterface
     protected int $taxAmount;
 
     /**
+     * Order externalSourceAmount amount.
+     *
+     * @var int externalSourceAmount
+     */
+    protected int $externalSourceAmount;
+
+    /**
      * Order currency.
      *
      * @var string orderCurrency
@@ -78,11 +85,12 @@ abstract class Order implements OrderInterface
      * @param int    $totalPrice
      * @param int    $shippingAmount
      * @param int    $taxAmount
+     * @param int    $externalSourceAmount
      * @param string $orderCurrency
      * @param string $userMobile
      * @param string $paymentToken
      */
-    public function __construct(int $id, int $price, int $totalPrice, int $shippingAmount, int $taxAmount, string $orderCurrency, string $userMobile, string $paymentToken = '')
+    public function __construct(int $id, int $price, int $totalPrice, int $shippingAmount, int $taxAmount, int $externalSourceAmount, string $orderCurrency, string $userMobile, string $paymentToken = '')
     {
         $this->orderProducts = [];
         $this->id = $id;
@@ -90,6 +98,7 @@ abstract class Order implements OrderInterface
         $this->totalPrice = $totalPrice;
         $this->shippingAmount = $shippingAmount;
         $this->taxAmount = $taxAmount;
+        $this->externalSourceAmount = $externalSourceAmount;
         $this->orderCurrency = $orderCurrency;
         $this->userMobile = $userMobile;
         $this->paymentToken = $paymentToken;
@@ -283,6 +292,28 @@ abstract class Order implements OrderInterface
     }
 
     /**
+     * Set order external source amount.
+     *
+     * @param int $externalSourceAmount
+     *
+     * @return void
+     */
+    public function setExternalSourceAmount(int $externalSourceAmount): void
+    {
+        $this->externalSourceAmount = $externalSourceAmount;
+    }
+
+    /**
+     * Retrieve order external source amount.
+     *
+     * @return int
+     */
+    public function getExternalSourceAmount(): int
+    {
+        return $this->externalSourceAmount;
+    }
+
+    /**
      * Set order currency.
      *
      * @param string $orderCurrency
@@ -347,4 +378,5 @@ abstract class Order implements OrderInterface
     {
         return $this->paymentToken != '' ? $this->paymentToken : null;
     }
+
 }

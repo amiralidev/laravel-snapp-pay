@@ -125,6 +125,13 @@ class SnappPay extends AbstractsSnappPay
             Currency::RIAL
         ) : 0;
 
+        $externalSourceAmount = $order->getExternalSourceAmount();
+        $data['externalSourceAmount'] = $externalSourceAmount > 0 ? $this->convertPrice(
+            $externalSourceAmount,
+            $order->getOrderCurrency(),
+            Currency::RIAL
+        ) : 0;
+
         return $this->request(
             $this->endPoint->getPaymentToken(EPType::URL),
             $this->endPoint->getPaymentToken(EPType::METHOD),
@@ -243,6 +250,13 @@ class SnappPay extends AbstractsSnappPay
         $discountAmount = $order->getTotalPrice() - $order->getPrice();
         $data['discountAmount'] = $discountAmount > 0 ? $this->convertPrice(
             $discountAmount,
+            $order->getOrderCurrency(),
+            Currency::RIAL
+        ) : 0;
+
+        $externalSourceAmount = $order->getExternalSourceAmount();
+        $data['externalSourceAmount'] = $externalSourceAmount > 0 ? $this->convertPrice(
+            $externalSourceAmount,
             $order->getOrderCurrency(),
             Currency::RIAL
         ) : 0;
