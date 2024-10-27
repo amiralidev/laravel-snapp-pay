@@ -13,7 +13,7 @@ class Order extends AbstractsOrder
      *
      * @return array
      */
-    #[ArrayShape(['cartId' => 'int', 'totalAmount' => 'int', 'shippingAmount' => 'int', 'isShipmentIncluded' => 'bool', 'taxAmount' => 'int', 'isTaxIncluded' => 'bool', 'cartItems' => 'array'])]
+    #[ArrayShape(['cartId' => 'int', 'totalAmount' => 'int', 'shippingAmount' => 'int', 'taxAmount' => 'int', 'isTaxIncluded' => 'bool', 'cartItems' => 'array'])]
     public function buildCartList(): array
     {
         $cartList = new CartList($this);
