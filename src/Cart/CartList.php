@@ -14,7 +14,7 @@ class CartList extends AbstractsCartList
      *
      * @return array
      */
-    #[Pure] #[ArrayShape(['cartId' => 'int', 'totalAmount' => 'int', 'shippingAmount' => 'int', 'taxAmount' => 'int', 'isTaxIncluded' => 'bool', 'cartItems' => 'array'])]
+    #[Pure] #[ArrayShape(['cartId' => 'int', 'totalAmount' => 'int', 'isShipmentIncluded' => 'bool', 'shippingAmount' => 'int', 'taxAmount' => 'int', 'isTaxIncluded' => 'bool', 'cartItems' => 'array'])]
     public function toArray(): array
     {
         $cartList = [
@@ -22,6 +22,7 @@ class CartList extends AbstractsCartList
             'totalAmount'        => self::convertPrice($this->totalAmount, $this->currency, Currency::RIAL),
             'shippingAmount'     => self::convertPrice($this->shippingAmount, $this->currency, Currency::RIAL),
             'taxAmount'          => self::convertPrice($this->taxAmount, $this->currency, Currency::RIAL),
+            'isShipmentIncluded' => true,
             'isTaxIncluded'      => $this->isTaxIncluded  ,
         ];
         $items = [];
